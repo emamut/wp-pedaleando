@@ -24,6 +24,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "axios": "^0.19.2",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11"
