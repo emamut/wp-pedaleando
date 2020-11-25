@@ -2,7 +2,7 @@
 
 <div class="flex flex-wrap justify-center">
   <div class="w-5/6">
-    <h1 class="text-3xl mt-4">Inserte aquí el texto <i class="fas fa-radiation-alt"></i></h1>
+    <h1 class="text-5xl mt-4 text-center font-sansita"> Pedaleando <i class="fas fa-bicycle fa-xs"></i> bike store</h1>
   </div>
 </div>
 
