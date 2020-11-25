@@ -11,7 +11,7 @@
       <li>Agrega al <span class="font-bold">Carrito de Compras</span> la bicicleta que necesites para hacer deporte, ir al trabajo o simplemente para <span class="italic">lampararosear</span>.</li>
       <li>Igualmente, agrega los accesorios que necesites (No te olvides del casco).</li>
       <li>Haz click en <span class="font-bold">Comprar</span>, esto abrirá tu Whatsapp donde te pondremos en contacto con nuestro equipo de ventas. Con ellos debes coordinar el forma de pago (Efectivo, Transferencia, Separado, <span class="italic">CrediCuerpo</span> o <span class="italic">ForniCard</span> <i class="far fa-smile"></i>).</li>
-      <li>Espera en 3 días laborales tu pedido en tu casa <span class="italic">o en la segunda <i class="far fa-grin-wink"></i></span></li>
+      <li>Espera en 3 días laborales tu pedido en casa <span class="italic">o en la segunda <i class="far fa-grin-wink"></i></span></li>
     </ul>
   </div>
 </div>
