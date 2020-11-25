@@ -13,4 +13,5 @@ mix
     open: false,
     files: ['dist/css/app.css', 'dist/js/app.js', './**/*.+(html|php)'],
   })
-  .sourceMaps(true, 'source-map');
+  .sourceMaps(true, 'source-map')
+  .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'dist/webfonts');

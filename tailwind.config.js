@@ -1,5 +1,5 @@
 module.exports = {
-  future: {},
+  future: { },
   purge: ['./src/**/*.php', './src/**/*.vue', './src/**/*.js'],
   theme: {
     extend: {},
