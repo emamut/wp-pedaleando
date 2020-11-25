@@ -8,5 +8,5 @@
 
     <?php wp_head(); ?>
   </head>
-  <body class="bg-gray-800 text-white">
+  <body class="bg-gray-800 text-white font-roboto">
     <div id="app" v-cloak>

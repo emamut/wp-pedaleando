@@ -10307,6 +10307,10 @@ video {
   font-family: Sansita Swashed, sans-serif;
 }
 
+.font-roboto{
+  font-family: Roboto, sans-serif;
+}
+
 .font-hairline{
   font-weight: 100;
 }
@@ -37509,6 +37513,10 @@ readers do not read off random characters that represent icons */
     font-family: Sansita Swashed, sans-serif;
   }
 
+  .sm\:font-roboto{
+    font-family: Roboto, sans-serif;
+  }
+
   .sm\:font-hairline{
     font-weight: 100;
   }
@@ -58487,6 +58495,10 @@ readers do not read off random characters that represent icons */
 
   .md\:font-sansita{
     font-family: Sansita Swashed, sans-serif;
+  }
+
+  .md\:font-roboto{
+    font-family: Roboto, sans-serif;
   }
 
   .md\:font-hairline{
@@ -79469,6 +79481,10 @@ readers do not read off random characters that represent icons */
     font-family: Sansita Swashed, sans-serif;
   }
 
+  .lg\:font-roboto{
+    font-family: Roboto, sans-serif;
+  }
+
   .lg\:font-hairline{
     font-weight: 100;
   }
@@ -100447,6 +100463,10 @@ readers do not read off random characters that represent icons */
 
   .xl\:font-sansita{
     font-family: Sansita Swashed, sans-serif;
+  }
+
+  .xl\:font-roboto{
+    font-family: Roboto, sans-serif;
   }
 
   .xl\:font-hairline{

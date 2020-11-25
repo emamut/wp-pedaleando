@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sansita: ['Sansita Swashed', 'sans-serif'],
+      roboto: ['Roboto', 'sans-serif'],
     },
     extend: {},
   },
