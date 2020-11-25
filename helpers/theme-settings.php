@@ -5,9 +5,21 @@ use Carbon_Fields\Field;
 add_action( 'carbon_fields_register_fields', 'crb_attach_theme_options' );
 function crb_attach_theme_options() {
   Container::make( 'theme_options', __( 'Theme Options', 'crb' ) )
+    ->set_page_parent( 'themes.php' )
     ->add_fields( array(
-      Field::make( 'text', 'crb_text', 'Text Field' ),
-    ) );
+      Field::make( 'complex', 'crb_categories' )->add_fields( array(
+        Field::make( 'text', 'title' ),
+        Field::make( 'complex', 'items' )
+          ->add_fields( array(
+            Field::make( 'text', 'name' ),
+            Field::make( 'image', 'image' )
+              ->set_type( array( 'image' ) )
+              ->set_value_type( 'url' ),
+            Field::make( 'text', 'prize' ),
+            Field::make( 'rich_text', 'text' ),
+          ))
+        )),
+    ));
 }
 
 add_action( 'after_setup_theme', 'crb_load' );

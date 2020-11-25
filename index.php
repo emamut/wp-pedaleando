@@ -1,8 +1,9 @@
-<?php get_header() ?>
+<?php get_header();
+$categories = carbon_get_theme_option( 'crb_categories' ); ?>
 
-<div class="flex flex-wrap justify-center">
-  <div class="w-5/6">
-    <h1 class="text-5xl mt-4 text-center font-sansita"> Pedaleando <i class="fas fa-bicycle fa-xs"></i> bike store</h1>
+<div class="grid grid-cols-12 mb-4">
+  <div class="col-start-1 md:col-start-3 col-span-full md:col-span-9 px-3 md:px-0">
+    <h1 class="text-5xl my-4 text-center font-sansita"> Pedaleando <i class="fas fa-bicycle fa-xs"></i> Bike Store</h1>
 
     <p class="text-base leading-7 mt-5">¡Hola! Esta es la primera tienda online de bicicletas del país.</p>
 
@@ -14,6 +15,24 @@
       <li>Espera en 3 días laborales tu pedido en casa <span class="italic">o en la segunda <i class="far fa-grin-wink"></i></span></li>
     </ul>
   </div>
+</div>
+
+<div class="grid grid-cols-12 mt-4">
+  <?php foreach($categories as $category): ?>
+  <div class="col-span-full px-10 mb-4">
+    <h3 class="text-3xl font-sansita"><?php echo $category['title'] ?></h3>
+  </div>
+
+    <?php foreach($category['items'] as $item): ?>
+      <div class="col-span-full md:col-span-4 bg-gray-300 p-3 mx-1">
+        <img src="<?php echo $item['image'] ?>" alt="" class="w-full">
+        <p class="text-xl text-center font-bold">
+          <?php echo $item['name'] ?>
+        </p>
+        <p class="text-sm"><?php echo $item['text'] ?></p>
+      </div>
+    <?php endforeach ?>
+  <?php endforeach ?>
 </div>
 
 <?php get_footer() ?>
