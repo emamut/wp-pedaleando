@@ -1,6 +1,6 @@
 module.exports = {
-  future: {},
-  purge: ['./**/*.php', './src/**/*.vue', './src/**/*.js'],
+  purge: ['./src/**/*.php', './src/**/*.vue', './src/**/*.js'],
+  darkMode: false,
   theme: {
     fontFamily: {
       sansita: ['Sansita Swashed', 'sans-serif'],
