@@ -1,5 +1,7 @@
 <?php get_header();
-$categories = carbon_get_theme_option( 'crb_categories' ); ?>
+
+$terms = get_terms( 'category' );
+$count = count( $terms ); ?>
 
 <div class="grid grid-cols-12 mb-4">
   <div class="col-start-1 md:col-start-3 col-span-full md:col-span-9 px-3 md:px-0">
@@ -17,22 +19,41 @@ $categories = carbon_get_theme_option( 'crb_categories' ); ?>
   </div>
 </div>
 
-<div class="grid grid-cols-12 mt-4">
-  <?php foreach($categories as $category): ?>
-  <div class="col-span-full px-10 mb-4">
-    <h3 class="text-3xl font-sansita"><?php echo $category['title'] ?></h3>
-  </div>
+<div class="grid grid-cols-12">
+  <?php if( $count > 0 ) :
+    foreach( $terms as $term ):
+      $args = array(
+        'post_type'       => 'bikes',
+        'posts_per_page'  => -1,
+        'tax_query'       => array(
+          'relation' => 'AND',
+          array(
+            'taxonomy' => 'category',
+            'field' => 'slug',
+            'terms' => array($term->slug),
+          ),
+        )
+      );
 
-    <?php foreach($category['items'] as $item): ?>
-      <div class="col-span-full md:col-span-4 bg-gray-300 p-3 mx-1">
-        <img src="<?php echo $item['image'] ?>" alt="" class="w-full">
-        <p class="text-xl text-center font-bold">
-          <?php echo $item['name'] ?>
-        </p>
-        <p class="text-sm"><?php echo $item['text'] ?></p>
+      $query = new WP_Query($args); ?>
+      <div class="col-span-full px-10 mt-8 mb-3">
+        <h3 class="text-3xl font-sansita"><?php echo $term->name ?></h3>
       </div>
-    <?php endforeach ?>
-  <?php endforeach ?>
+      <?php while($query->have_posts()): $query->the_post(); ?>
+        <div class="col-span-full md:col-span-4 bg-gray-300 p-3 m-1">
+          <?php the_post_thumbnail('medium', array( 'class' => 'w-full' )); ?>
+          <p class="text-xl text-center font-bold">
+            <?php the_title(); ?>
+          </p>
+          <p class="text-sm mt-2"><?php echo carbon_get_the_post_meta('text') ?></p>
+          <div class="flex justify-between mt-3 flex-wrap">
+            <p class="font-bold text-2xl mt-3">$<?php echo carbon_get_the_post_meta('prize') ?></p>
+            <button class="btn-buy">Comprar</button>
+          </div>
+        </div>
+      <?php endwhile;
+    endforeach;
+  endif; ?>
 </div>
 
 <?php get_footer() ?>

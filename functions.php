@@ -2,6 +2,7 @@
 add_theme_support( 'post-thumbnails' );
 
 require_once ( get_template_directory() . '/helpers/theme-settings.php' );
+require_once ( get_template_directory() . '/helpers/custom-post-types.php' );
 
 function add_theme_scripts()
 {
