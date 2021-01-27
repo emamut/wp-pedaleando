@@ -1,7 +1,4 @@
-<?php get_header();
-
-$terms = get_terms( 'category' );
-$count = count( $terms ); ?>
+<?php get_header(); ?>
 
 <div class="grid grid-cols-12 mb-4">
   <div class="col-start-1 md:col-start-3 col-span-full md:col-span-9 px-3 md:px-0">
@@ -19,41 +16,21 @@ $count = count( $terms ); ?>
   </div>
 </div>
 
-<div class="grid grid-cols-12">
-  <?php if( $count > 0 ) :
-    foreach( $terms as $term ):
-      $args = array(
-        'post_type'       => 'bikes',
-        'posts_per_page'  => -1,
-        'tax_query'       => array(
-          'relation' => 'AND',
-          array(
-            'taxonomy' => 'category',
-            'field' => 'slug',
-            'terms' => array($term->slug),
-          ),
-        )
-      );
-
-      $query = new WP_Query($args); ?>
-      <div class="col-span-full px-10 mt-8 mb-3">
-        <h3 class="text-3xl font-sansita"><?php echo $term->name ?></h3>
-      </div>
-      <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="col-span-full md:col-span-4 bg-gray-300 p-3 m-1">
-          <?php the_post_thumbnail('medium', array( 'class' => 'w-full' )); ?>
-          <p class="text-xl text-center font-bold">
-            <?php the_title(); ?>
-          </p>
-          <p class="text-sm mt-2"><?php echo carbon_get_the_post_meta('text') ?></p>
-          <div class="flex justify-between mt-3 flex-wrap">
-            <p class="font-bold text-2xl mt-3">$<?php echo carbon_get_the_post_meta('prize') ?></p>
-            <button class="btn-buy">Comprar</button>
-          </div>
-        </div>
-      <?php endwhile;
-    endforeach;
-  endif; ?>
+<div class="grid grid-cols-12" v-for="(items, key) in stockArray">
+  <div class="col-span-full px-10 mt-8 mb-3">
+    <h3 class="text-3xl font-sansita">{{ key }}</h3>
+  </div>
+  <div class="col-span-full md:col-span-4 bg-gray-300 p-3 m-1" v-for="item in items">
+    <img :src="item.post_image" alt="" class="w-full">
+    <p class="text-xl text-center font-bold">
+      {{ item.post_title }}
+    </p>
+    <p class="text-sm mt-2">{{ item.text }}</p>
+    <div class="flex justify-between mt-3 flex-wrap">
+      <p class="font-bold text-2xl mt-3">${{ item.prize }}</p>
+      <button class="btn-buy">Comprar</button>
+    </div>
+  </div>
 </div>
 
 <?php get_footer() ?>
