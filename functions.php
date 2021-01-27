@@ -17,6 +17,5 @@ function myplugin_ajaxurl() {
   echo "<script type=\"text/javascript\">
       let siteURL = '" . get_site_url() . "',
       themePath = '" . get_template_directory_uri() ."'
-      whatsappNumber = '" . get_option('whatsapp') . "'
     </script>";
 }

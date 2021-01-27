@@ -7,7 +7,17 @@
     <p class="text-sm mt-2">{{ item.text }}</p>
     <div class="flex justify-between mt-3 flex-wrap">
       <p class="font-bold text-2xl mt-3">${{ item.prize }}</p>
-      <button class="btn-buy">Comprar</button>
+      <input
+        type="number"
+        class="border-2 bg-white rounded ml-4 px-2 w-16"
+        min="0"
+        max="100"
+        v-model="cant"
+        placeholder="0"
+      />
+      <button class="btn-buy" @click="addToOrder(item)">
+        Comprar
+      </button>
     </div>
   </div>
 </template>
@@ -17,29 +27,23 @@ export default {
   data() {
     return {
       numOrders: [],
+      cant: 0,
     };
   },
-  props: ['item', 'arrayKey'],
-  mounted() {
-    for (let cont = 0; cont < this.$parent.stockArray.length; cont++)
-      this.numOrders[cont] = 0;
-  },
+  props: ['item'],
   methods: {
-    addToOrder: function(item, key) {
-      let search = this.$parent.orderArray.findIndex((e) => e.id == item.ID);
-      if (search == -1) {
-        if (this.numOrders[key] > 0)
-          this.$parent.orderArray.push({
-            id: item.ID,
-            name: item.post_title,
-            prize: item.prize,
-            quantity: this.numOrders[key],
-          });
-      } else this.$parent.orderArray[search].quantity = this.numOrders[key];
-      this.$parent.sumOrder = this.$parent.orderArray.reduce(
-        (accum, item) => accum + item.prize * item.quantity,
-        0
-      );
+    addToOrder: function(item) {
+      if (this.cant > 0) {
+        let search = this.$parent.orderArray.findIndex((e) => e.ID == item.ID);
+        if (search == -1) {
+          item.quantity = this.cant;
+          this.$parent.orderArray.push(item);
+        } else this.$parent.orderArray[search].quantity = this.cant;
+        this.$parent.sumOrder = this.$parent.orderArray.reduce(
+          (accum, item) => accum + item.prize * item.quantity,
+          0
+        );
+      }
     },
   },
 };
