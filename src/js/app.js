@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import axios from 'axios';
 
+Vue.component(
+  'card-component',
+  require('./components/CardComponent.vue').default
+);
+
 const app = new Vue({
   el: '#app',
   data() {

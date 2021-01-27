@@ -20,17 +20,7 @@
   <div class="col-span-full px-10 mt-8 mb-3">
     <h3 class="text-3xl font-sansita">{{ key }}</h3>
   </div>
-  <div class="col-span-full md:col-span-4 bg-gray-300 p-3 m-1" v-for="item in items">
-    <img :src="item.post_image" alt="" class="w-full">
-    <p class="text-xl text-center font-bold">
-      {{ item.post_title }}
-    </p>
-    <p class="text-sm mt-2">{{ item.text }}</p>
-    <div class="flex justify-between mt-3 flex-wrap">
-      <p class="font-bold text-2xl mt-3">${{ item.prize }}</p>
-      <button class="btn-buy">Comprar</button>
-    </div>
-  </div>
+  <card-component v-for="item in items" :item="item" :key="item.ID"></card-component>
 </div>
 
 <?php get_footer() ?>
