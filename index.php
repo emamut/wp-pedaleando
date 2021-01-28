@@ -1,7 +1,4 @@
-<?php get_header();
-
-$terms = get_terms( 'category' );
-$count = count( $terms ); ?>
+<?php get_header(); ?>
 
 <div class="grid grid-cols-12 mb-4">
   <div class="col-start-1 md:col-start-3 col-span-full md:col-span-9 px-3 md:px-0">
@@ -11,49 +8,27 @@ $count = count( $terms ); ?>
 
     <h4 class="text-xl bold font-sansita mt-4">¿Cómo usar?</h4>
     <ul class="list-disc mt-2">
-      <li>Agrega al <span class="font-bold">Carrito de Compras</span> la bicicleta que necesites para hacer deporte, ir al trabajo o simplemente para <span class="italic">lampararosear</span>.</li>
+      <li>Agrega al <span class="font-bold">Carrito de Compras</span> la bicicleta que necesites para hacer deporte, ir al trabajo o simplemente para <span class="italic">lamparosear</span>.</li>
       <li>Igualmente, agrega los accesorios que necesites (No te olvides del casco).</li>
       <li>Haz click en <span class="font-bold">Comprar</span>, esto abrirá tu Whatsapp donde te pondremos en contacto con nuestro equipo de ventas. Con ellos debes coordinar el forma de pago (Efectivo, Transferencia, Separado, <span class="italic">CrediCuerpo</span> o <span class="italic">ForniCard</span> <i class="far fa-smile"></i>).</li>
       <li>Espera en 3 días laborales tu pedido en casa <span class="italic">o en la segunda <i class="far fa-grin-wink"></i></span></li>
     </ul>
   </div>
+  <div class="col-start-1 md:col-start-3 col-span-full md:col-span-9 px-3 md:px-0 mt-5">
+    <button class="btn-buy" :class="enableOrder()" @click="checkOrder">
+      Artículos en su carrito: {{ orderArray.length }}
+    </button>
+  </div>
 </div>
 
-<div class="grid grid-cols-12">
-  <?php if( $count > 0 ) :
-    foreach( $terms as $term ):
-      $args = array(
-        'post_type'       => 'bikes',
-        'posts_per_page'  => -1,
-        'tax_query'       => array(
-          'relation' => 'AND',
-          array(
-            'taxonomy' => 'category',
-            'field' => 'slug',
-            'terms' => array($term->slug),
-          ),
-        )
-      );
+<order-component :order-array="orderArray"></order-component>
 
-      $query = new WP_Query($args); ?>
-      <div class="col-span-full px-10 mt-8 mb-3">
-        <h3 class="text-3xl font-sansita"><?php echo $term->name ?></h3>
-      </div>
-      <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="col-span-full md:col-span-4 bg-gray-300 p-3 m-1">
-          <?php the_post_thumbnail('medium', array( 'class' => 'w-full' )); ?>
-          <p class="text-xl text-center font-bold">
-            <?php the_title(); ?>
-          </p>
-          <p class="text-sm mt-2"><?php echo carbon_get_the_post_meta('text') ?></p>
-          <div class="flex justify-between mt-3 flex-wrap">
-            <p class="font-bold text-2xl mt-3">$<?php echo carbon_get_the_post_meta('prize') ?></p>
-            <button class="btn-buy">Comprar</button>
-          </div>
-        </div>
-      <?php endwhile;
-    endforeach;
-  endif; ?>
+<div class="grid grid-cols-12" v-for="(items, key) in stockArray">
+  <div class="col-span-full px-10 mt-8 mb-3">
+    <h3 class="text-3xl font-sansita">{{ key }}</h3>
+  </div>
+
+  <card-component v-for="item in items" :item="item" :key="item.ID"></card-component>
 </div>
 
 <?php get_footer() ?>
